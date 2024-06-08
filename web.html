@@ -1,21 +1,75 @@
+<!--web.html-->
+
 <html><head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+
+$(document).ready(function(){
+   $(".menu7").mouseover(function(){
+	//console.log($(this).attr("id"));
+	$(this).html("&#10004;");
+  });
+
+});
+
+ function init() {
+ offset2 = 100;
+ for(i=0;i<14;i++){
+  $('body').append($('<div/>', {class:'menu6',style:'top:5px;left:'+offset2+'px;'}));
+  offset2 -= 5;
+  $('body').append($('<div/>', {class:'menu7',style:'top:25px;left:'+offset2+'px;'}).html("&nbsp;&nbsp;"));
+  offset2 += 105;
+ }
+ setInterval(togglemenu,300);
+ }
+
+</script>
+<script>
+
+var offset = 20;
 
 function togglemenu(){
 
 div1=document.getElementById("menu");
-if(div1.style.bottom<=100)
-	div1.style.bottom=div1.style.bottom+50;
-else
-	div1.style.bottom=div1.style.bottom-50;
 
-t1=setTimeout(togglemenu(),100);
+if (parseInt(div1.style.bottom)<100)
+	offset = 20;
+else if (parseInt(div1.style.bottom)>350)
+	offset = -20;
+div1.style.bottom=parseInt(div1.style.bottom,10)+offset;
+
+var today = new Date();
+var h = today.getHours();
+var m = today.getMinutes();
+var s = today.getSeconds();
+
+document.getElementById('hr').innerHTML = h; 
+document.getElementById('min').innerHTML = m; 
+document.getElementById('sec').innerHTML = s;
+
+var y =  document.getElementsByClassName("menu6");
+var z =  document.getElementsByClassName("menu7");
+//console.log(y.length);
+var i;
+for (i = 0; i < z.length; i++) {
+  var x = parseInt(y[i].style.top,10);
+  var x1 = parseInt(z[i].style.top,10);
+  if (x==5 || x>=600 ){
+	offset1 = Math.floor((Math.random() * 100) + 1) * 3;
+	y[i].style.top = offset1;
+	z[i].style.top = offset1 - 20;;
+	z[i].innerHTML = "&nbsp;&nbsp;";
+  }else{
+	y[i].style.top = x + 20;
+	z[i].style.top = x1 + 20;
+}
+} 
 
 }
 
 </script>
 </head>
-<body style="background:saddlebrown" onload="togglemenu()">
+<body style="background:saddlebrown;font-family:neo-sans;" onload="init()">
 
 <style type="text/css">
 
@@ -65,10 +119,29 @@ position:absolute;
 
 }
 
+.menu6
+{
+width:37px;
+height:40px;
+border-style:solid;
+border-color:pink;
+position:absolute;
+font-size:70;
+
+}
+
+.menu7
+{
+font-size:70;
+position:absolute;
+color:pink;
+
+}
+
 </style>
 
 
-<div id="menu" style="position:absolute;bottom:0px;left:0px">
+<div id="menu" style="position:absolute;bottom:100px;left:0px">
 
 <div class="menu3" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="bottom:5px;left:5px;"></div>
 <div class="menu3" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="bottom:5px;left:60px;"></div>
@@ -99,14 +172,14 @@ position:absolute;
 <div class="menu1" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:5px;left:415px;"></div>
 
 
-<div class="menu1" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:110px;left:5px;"></div>
+<div class="menu1" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:110px;left:5px;font-size:80;align:center;">e</div>
 <div class="menu1" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:110px;left:210px;"></div>
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:110px;left:415px;"></div>
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:110px;left:518px;"></div>
 
 
-<div class="menu1" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:5px;font-size:80;align:center;">e</div>
-<div class="menu1" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:210px;"></div>
+<div class="menu1" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:5px;font-size:80;align:center;">s</div>
+<div class="menu1" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:210px;font-size:80;align:center;">f</div>
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:415px;"></div>
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:518px;"></div>
 
@@ -124,13 +197,13 @@ position:absolute;
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:5px;left:108px;"></div>
 
 
-<div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:110px;left:5px;"></div>
+<div id="hr" class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:110px;left:5px;font-size:80;align:center;text-align:right;"></div>
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:110px;left:108px;"></div>
 
-<div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:5px;"></div>
+<div id="min" class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:5px;font-size:80;align:center;text-align:right;"></div>
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:215px;left:108px;"></div>
 
-<div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:320px;left:5px;"></div>
+<div id="sec" class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:320px;left:5px;font-size:80;align:center;text-align:right;"></div>
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:320px;left:108px;"></div>
 
 </div>
@@ -158,8 +231,6 @@ position:absolute;
 <div class="menu2" onmouseover="this.style.background='gold';" onmouseout="this.style.background='orange';" style="top:320px;left:313px;"></div>
 
 </div>
-
-
 
 
 </body>
